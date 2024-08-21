@@ -6,25 +6,25 @@ const cars = [
     type: "SUV",
     model: "XC60 Recharge",
     description: "plug-in hybrid",
-    imageUrl: "/public/images/s60_recharge.jpg",
+    imageUrl: "/images/s60_recharge.jpg",
   },
   {
     type: "SUV",
     model: "XC40 Recharge",
     description: "plug-in hybrid",
-    imageUrl: "/path/to/xc40-hybrid.jpg",
+    imageUrl: "/images/xc90_recharge.jpg",
   },
   {
     type: "SUV",
     model: "XC40 Recharge",
     description: "pure electric",
-    imageUrl: "/path/to/xc40-electric.jpg",
+    imageUrl: "/images/xc90_recharge.jpg",
   },
   {
     type: "ESTATE",
     model: "V90 Recharge",
     description: "plug-in hybrid",
-    imageUrl: "/path/to/v90.jpg",
+    imageUrl: "/images/xc90_recharge.jpg",
   },
 ];
 
