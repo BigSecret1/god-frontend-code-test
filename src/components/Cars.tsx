@@ -1,32 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Grid, Paper, Typography, Button } from "@mui/material";
 
-const cars = [
-  {
-    type: "SUV",
-    model: "XC60 Recharge",
-    description: "plug-in hybrid",
-    imageUrl: "/images/s60_recharge.jpg",
-  },
-  {
-    type: "SUV",
-    model: "XC40 Recharge",
-    description: "plug-in hybrid",
-    imageUrl: "/images/xc90_recharge.jpg",
-  },
-  {
-    type: "SUV",
-    model: "XC40 Recharge",
-    description: "pure electric",
-    imageUrl: "/images/xc90_recharge.jpg",
-  },
-  {
-    type: "ESTATE",
-    model: "V90 Recharge",
-    description: "plug-in hybrid",
-    imageUrl: "/images/xc90_recharge.jpg",
-  },
-];
 
 const CarCard = ({ car }) => (
   <Grid item xs={12} sm={6} md={3}>
@@ -42,10 +16,11 @@ const CarCard = ({ car }) => (
         },
       }}
     >
-      <img src={car.imageUrl} alt={car.model} style={{ width: "100%" }} />
-      <Typography variant="subtitle2">{car.type}</Typography>
-      <Typography variant="h6">{car.model}</Typography>
-      <Typography variant="body2">{car.description}</Typography>
+      
+      <Typography variant="subtitle2">{car.bodyType}</Typography>
+      <Typography variant="h6">{car.modelName}</Typography>
+      <p>{car.modelType}</p>
+       <img src={car.imageUrl} alt={car.model} style={{ width: "100%" }} />
       <div style={{ display: "flex", justifyContent: "space-between", padding: "10px" }}>
         <Button variant="text">LEARN</Button>
         <Button variant="text">SHOP</Button>
@@ -54,15 +29,26 @@ const CarCard = ({ car }) => (
   </Grid>
 );
 
-const Cars = () => (
-  <Container maxWidth="lg">
-    <Grid container spacing={3}>
-      {cars.map((car, index) => (
-        <CarCard key={index} car={car} />
-      ))}
-    </Grid>
-  </Container>
-);
+
+const Cars = () => {
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/cars.json')
+      .then(response => response.json())
+      .then(data => setCars(data))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
+    <Container maxWidth="lg">
+      <Grid container spacing={3}>
+        {cars.map((car, index) => (
+          <CarCard key={index} car={car} />
+        ))}
+      </Grid>
+    </Container>
+  );
+};
 
 export default Cars;
-
