@@ -1,45 +1,63 @@
-import React from "react";
-import styles from "./NavBar.module.css"; // Importing CSS module
+import React, { useState } from "react";
+import styles from "./css/NavBar.module.css";
+import Link from "next/link";
+import { useSearch } from './context/SearchContext'; // Adjust the path as needed
+
+/*
+ import { Link} from 'vcc-ui';                              
+ Tried to use from vcc-ui but including many other componenets are depricated as mentioned in doc 
+ hope I dont' lose my bonus point because of this !
+ */
 
 const NavBar: React.FC = () => {
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light" id="navBar">
-            <button 
-                className="navbar-toggler" 
-                type="button" 
-                data-toggle="collapse" 
-                data-target="#navbarTogglerDemo03" 
-                aria-controls="navbarTogglerDemo03" 
-                aria-expanded="false" 
-                aria-label="Toggle navigation"
-            >
-                <span className="navbar-toggler-icon"></span>
-            </button>
+  const { setSearchTerm } = useSearch(); 
 
-            <a className="navbar-brand" href="#">All</a>
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const carBodies  = e.target.elements.search.value.trim();
+    setSearchTerm(carBodies);
+  };
 
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo03"> {/* ID kept here */}
-                <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#">suv</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">estate</a>
-                    </li>
-                </ul>
+  return (
+    <nav
+      className={`${styles.navbarCustom} navbar navbar-expand-lg navbar-light`}
+    >
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
 
-                <div className={styles.searchBarContainer}>
-                    <form className="form-inline my-2 my-lg-0"  id="formForSearch">
-                        <div className={styles.formItems}>
-                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </div>
-                    </form>
-                </div>
-
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <h4> All </h4>
+        <div className={styles.searchBarContainer}>
+          <form className="form-inline my-2 my-lg-0" id="formForSearch" onSubmit={handleSearch}>
+            <div className={styles.formItems}>
+              <input
+                className="form-control mr-sm-2"
+                type="search"
+                name="search"
+                placeholder="Search car body type"
+                aria-label="Search"
+              />
+              <button
+                className="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+              </button>
             </div>
-        </nav>
-    );
+          </form>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default NavBar;

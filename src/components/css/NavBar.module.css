@@ -1,5 +1,9 @@
-#navBar {
-    background-color: green;
+.navbarCustom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: yellow;
+    gap: 10px
 }
 
 .searchBarContainer {
