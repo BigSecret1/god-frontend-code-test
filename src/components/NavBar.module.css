@@ -1,0 +1,29 @@
+#navBar {
+    background-color: green;
+}
+
+.searchBarContainer {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center; 
+    width: 50%;
+    height: 60px; 
+    margin-left:  auto; 
+  }
+
+.formItems {
+    display: flex;
+    justify-content: center; 
+    align-items:center; 
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .formItems input {
+    width: 80%;
+  }
+
+  .formItems button {
+    width: 40%;
+  }
+

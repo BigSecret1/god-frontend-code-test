@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Grid, Paper, Typography, Button } from "@mui/material";
 import Link from "next/link";
 
+
 const CarCard = ({ car }) => (
   <Grid item xs={12} sm={6} md={3}>
     <Paper
