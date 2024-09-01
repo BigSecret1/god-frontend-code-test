@@ -1,3 +1,11 @@
 .carBody {
     margin-top: 20px;
 }
+
+.learnAndShop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 23px;
+}

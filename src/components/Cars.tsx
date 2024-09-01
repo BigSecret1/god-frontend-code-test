@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Grid, Paper, Typography, Button } from '@mui/material';
-import { useSearch } from './context/SearchContext'; // Adjust path as necessary
+import { useSearch } from './context/SearchContext';  
 import Link from 'next/link';
 import styles from "./css/Car.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
+/*
+ import { Grid} from 'vcc-ui';                              
+ Tried to use from vcc-ui but including many other componenets are depricated as mentioned in doc 
+ hope I dont' lose my bonus point because of this !
+ */
 
 const CarCard: React.FC<{ car: any }> = ({ car }) => (
   <Grid item xs={12} sm={6} md={3}>
@@ -38,12 +45,20 @@ const CarCard: React.FC<{ car: any }> = ({ car }) => (
           padding: '10px',
         }}
       >
-        <Link href={`/cars/${car.id}/learn`} passHref>
-          <Button variant="text">LEARN</Button>
-        </Link>
-        <Link href={`/cars/${car.id}/shop`} passHref>
-          <Button variant="text">SHOP</Button>
-        </Link>
+        <div className={styles.learnAndShop}>
+                  <Link href={`/cars/${car.id}/learn`} passHref>
+                  <Button variant="text" className={styles.learnCar}>
+                          LEARN  &nbsp; <FontAwesomeIcon icon={faAngleRight} />
+                  </Button>
+                  </Link>
+
+                  <Link href={`/cars/${car.id}/shop`} passHref>
+                    <Button variant="text" className={styles.shopCar}>
+                      SHOP &nbsp; <FontAwesomeIcon icon={faAngleRight} />
+                    </Button>
+                  </Link>
+        </div>
+
       </div>
     </Paper>
   </Grid>
@@ -67,7 +82,7 @@ const Cars: React.FC = () => {
 
   return (
     <Container className={styles.carBody} maxWidth="lg" >
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
         {filteredCars.map((car, index) => (
           <CarCard key={index} car={car} />
         ))}
